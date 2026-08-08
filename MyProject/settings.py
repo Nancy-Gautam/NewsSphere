@@ -124,12 +124,10 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'   # collectstatic copies everything here 
 
 STORAGES = {
     "default": {
-        # Purani images (jo static/ folder me git ke saath already maujood hain)
-        # seedhe local filesystem se serve hoti hain -- koi extra upload step nahi chahiye.
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
 
