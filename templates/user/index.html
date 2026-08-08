@@ -1,0 +1,510 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block childpage %}
+<style>
+    /* ================= Slider ================= */
+    .hero-slide-box {
+        width: 100%;
+        aspect-ratio: 16 / 8;
+        background: linear-gradient(135deg, #10202f, #0f3d3d);
+        overflow: hidden;
+        border-radius: 12px;
+    }
+    .hero-slide-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    .carousel-caption {
+        background: rgba(15, 27, 43, .55);
+        border-radius: 10px;
+        padding: 10px 16px;
+    }
+
+    /* ================= Jobs ticker (replaces <marquee>) ================= */
+    .ticker-box {
+        background: var(--navy);
+        border-radius: 12px;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    .ticker-header {
+        color: var(--gold);
+        text-align: center;
+        margin: 0;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255,255,255,.1);
+        flex-shrink: 0;
+    }
+    .ticker-viewport {
+        flex: 1;
+        overflow: hidden;
+        position: relative;
+    }
+    .ticker-track {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        animation: ticker-scroll 14s linear infinite;
+    }
+    .ticker-viewport:hover .ticker-track { animation-play-state: paused; }
+    .ticker-track li a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        color: #ddd;
+        text-decoration: none;
+        padding: 12px 16px;
+        border-bottom: 1px dashed rgba(255,255,255,.08);
+        font-size: 14px;
+        transition: color .2s ease, background .2s ease;
+        position: relative;
+        z-index: 2;
+        cursor: pointer;
+    }
+    .ticker-track li a:hover {
+        color: var(--gold);
+        background: rgba(255,255,255,.05);
+        text-decoration: underline;
+    }
+    .ticker-track li a i { font-size: 12px; opacity: .6; }
+    .ticker-empty {
+        color: #999;
+        text-align: center;
+        padding: 20px 10px;
+        font-size: 14px;
+    }
+    @keyframes ticker-scroll {
+        0%   { transform: translateY(0); }
+        100% { transform: translateY(-50%); }
+    }
+
+    /* ================= Category quick-links bar ================= */
+    .category-bar {
+        background: #eef1f5;
+        border-radius: 10px;
+        padding: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    /* ================= Generic media box (full image visible, no crop) ================= */
+    .media-box {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        background: linear-gradient(135deg, #eef1f5, #dfe4ea);
+        overflow: hidden;
+        border-radius: 10px 10px 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .media-box img { width: 100%; height: 100%; object-fit: contain; }
+
+    .news-card {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 3px 14px rgba(0,0,0,.08);
+        transition: transform .25s ease, box-shadow .25s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .news-card:hover { transform: translateY(-6px); box-shadow: 0 10px 26px rgba(0,0,0,.15); }
+    .news-card .card-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        border-radius: 0 0 10px 10px;
+    }
+    .news-card .card-title { font-size: 1.05rem; font-weight: 700; }
+    .news-card .meta { font-size: 13px; color: #777; }
+    .news-card .btn { position: relative; z-index: 3; margin-top: auto; align-self: flex-start; }
+
+    /* ================= City pills ================= */
+    .city-pill {
+        text-decoration: none;
+        color: #eee;
+        background: rgba(255,255,255,.06);
+        border: 1px solid rgba(255,255,255,.15);
+        border-radius: 30px;
+        padding: 4px 10px 4px 4px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: all .25s ease;
+    }
+    .city-pill:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+    .city-pill img {
+        height: 40px; width: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    /* ================= Video card ================= */
+    .video-embed-box {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 10px 0 0 10px;
+        overflow: hidden;
+        background: #000;
+        cursor: pointer;
+    }
+    .video-embed-box iframe {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        border: 0;
+    }
+    .video-embed-box .video-thumb {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+        background: #111;
+    }
+    .video-embed-box .play-btn {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        width: 56px; height: 56px;
+        background: rgba(217, 79, 48, .9);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        transition: transform .2s ease, background .2s ease;
+    }
+    .video-embed-box:hover .play-btn { transform: translate(-50%, -50%) scale(1.1); background: var(--brick); }
+
+    /* ================= Responsive tweaks ================= */
+    @media (max-width: 767px) {
+        .hero-slide-box { aspect-ratio: 4 / 3; }
+        .ticker-box { height: 220px; margin-top: 16px; }
+        .video-embed-box { border-radius: 10px 10px 0 0; }
+    }
+    .view-more-btn{
+    background: linear-gradient(135deg, #dc3545, #ff6b6b);
+    color: #fff;
+    border: none;
+    padding: 7px 18px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: 0.3s;
+    box-shadow: 0 3px 10px rgba(220,53,69,.3);
+}
+
+.view-more-btn:hover{
+    background: linear-gradient(135deg, #b02a37, #dc3545);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(220,53,69,.4);
+}
+</style>
+
+<!-- ================= Slider + Jobs ticker ================= -->
+<div class="row">
+    <div class="col-lg-9 col-12 p-2">
+        <div id="carouselExampleCaptions" class="carousel slide">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="hero-slide-box">
+                        <img src="{% static 'images/anand1.jpg' %}" alt="Slide 1">
+                    </div>
+                    <div class="carousel-caption d-none d-md-block">
+
+                        <p>Some representative placeholder content for the first slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="hero-slide-box">
+                        <img src="{% static 'images/anand2.jpg' %}" alt="Slide 2">
+                    </div>
+                    <div class="carousel-caption d-none d-md-block">
+
+                        <p>Some representative placeholder content for the second slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="hero-slide-box">
+                        <img src="{% static 'images/anand3.gif' %}" alt="Slide 3">
+                    </div>
+                    <div class="carousel-caption d-none d-md-block">
+
+                        <p>Some representative placeholder content for the third slide.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="hero-slide-box">
+                        <img src="{% static 'images/anand4.jpg' %}" alt="Slide 4">
+                    </div>
+                    <div class="carousel-caption d-none d-md-block">
+
+                        <p>Some representative placeholder content for the fourth slide.</p>
+                    </div>
+                </div>
+                {% for i in sd %}
+                 <div class="carousel-item">
+                     <div class="hero-slide-box">
+                         <img src="{{ i.slider_picture.url }}" alt="{{ i.headlines }}">
+                     </div>
+                     <div class="carousel-caption d-none d-md-block">
+                         <h5>{{ i.headlines }}</h5>
+                         <p>{{ i.slider_Dec }}</p>
+                     </div>
+                 </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-12 p-2">
+        <div class="ticker-box">
+            <h6 class="ticker-header"><i class="fa-solid fa-briefcase"></i> Latest Jobs</h6>
+            <div class="ticker-viewport">
+                {% if jobdata %}
+                <ul class="ticker-track">
+                    {% for i in jobdata %}
+                   <li>
+                       <a href="{{ i.job_link|default:'#' }}" target="_blank" rel="noopener noreferrer">
+                           {{ i.job_title }}
+                           <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                       </a>
+                   </li>
+                    {% endfor %}
+                    <!-- duplicated for seamless loop -->
+                    {% for i in jobdata %}
+                    <li>
+                        <a href="{{ i.job_link|default:'#' }}" target="_blank" rel="noopener noreferrer">
+                            {{ i.job_title }}
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <div class="ticker-empty">No jobs available right now</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ================= Category quick-links ================= -->
+<div class="row mt-3">
+    <div class="col-12 p-2">
+        <div class="category-bar">
+            {% for i in cdata1 %}
+            <a href="/user/news?x={{ i.id }}" class="btn btn-sm btn-outline-dark">{{ i.category_name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- ================= Promo cards ================= -->
+<div class="row row-cols-1 row-cols-md-2 g-4 mt-1">
+
+    <div class="col">
+        <div class="news-card card">
+            <div class="media-box"><img src="{% static 'images/news2.jpg' %}" alt="Education Ministry"></div>
+            <div class="card-body">
+                <h5 class="card-title">Sarkari Result – Government Job & Exam Updates Portal</h5>
+                <p class="card-text">Official government portal for government Job & Exam Updates Portal and updates for students across India.</p>
+                <a href="https://www.sarkariresult.com/" target="_blank" class="visit-link">
+                    Visit Website: https://www.sarkariresult.com/
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="news-card card">
+            <div class="media-box"><img src="{% static 'images/news5.jpeg' %}" alt="CBSE Results"></div>
+            <div class="card-body">
+                <h5 class="card-title">NewsHub – Latest News & Breaking Updates</h5>
+                <p class="card-text">Global News – Breaking News & Worldwide Updates</p>
+                <a href="https://www.bbc.com/" target="_blank" class="visit-link">
+                    Visit Website: https://www.bbc.com/
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="news-card card">
+            <div class="media-box"><img src="{% static 'images/news6.jpg' %}" alt="Scholarships"></div>
+            <div class="card-body">
+                <h5 class="card-title">Sports Hub</h5>
+                <p class="card-text">Live Sports News & Match Updates</p>
+                <a href="https://www.cricbuzz.com/" target="_blank" class="visit-link">
+                    Visit Website: https://www.cricbuzz.com/
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="news-card card">
+            <div class="media-box"><img src="{% static 'images/news7.jpg' %}" alt="Admission"></div>
+            <div class="card-body">
+                <h5 class="card-title">EduLearn – Online Learning Platform</h5>
+                <p class="card-text">GeeksforGeeks is a popular online learning platform that provides programming tutorials, coding practice, interview preparation, and computer science resources for students and software developers.</p>
+                <a href="https://www.geeksforgeeks.org/" target="_blank" class="visit-link">
+                    Visit Website: https://www.geeksforgeeks.org/
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ================= Latest News ================= -->
+<div class="row news py-3 mt-2">
+    <div class="fs-2 mb-2">Latest <b class="txt-mycolor">News</b></div>
+    <div class="col-12">
+        <div class="row g-3">
+            {% for x in ndata %}
+            <div class="col-6 col-sm-4 col-lg-3">
+                <div class="news-card card">
+                    <div class="media-box">
+                        <img src="{{ x.news_picture.url }}" alt="{{ x.news_headlines }}">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ x.news_headlines }}</h5>
+                        <b class="meta">{{ x.news_category }}</b><br/>
+
+                        <a href="/user/viewnews?id={{ x.id }}" class="view-more-btn mt-2">
+                            View More <i class="fa-solid fa-eye"></i>
+                        </a>
+
+                        <p class="meta mt-2 mb-0">
+                            <i class="fa-solid fa-calendar-days"></i> {{ x.news_date }} &nbsp;|&nbsp; {{ x.news_city }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- ================= Cities ================= -->
+<div class="row bg-dark py-4 city">
+    <div class="col-12 d-flex flex-wrap justify-content-center gap-2">
+        {% for i in cdata %}
+        <a href="/user/news?x={{ i.id }}" class="city-pill">
+            <img src="{{ i.city_picture.url }}" alt="{{ i.city_name }}"
+                 onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2740%27 height=%2740%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23dfe4ea%27/%3E%3C/svg%3E';">
+            {{ i.city_name }}
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- ================= Video news ================= -->
+<!-- <div class="row g-3 mt-1">
+    {% for x in vdata %}
+    <div class="col-lg-4 col-md-6 col-12">
+        <div class="news-card card mb-3">
+            <div class="row g-0">
+                <div class="col-md-5 col-12">
+                    <div class="video-embed-box" data-video-url="{{ x.vlink }}" onclick="playVideoNews(this)">
+                        <img class="video-thumb" alt="{{ x.vcategory }}"
+                             onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27400%27 height=%27225%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23222%27/%3E%3C/svg%3E';">
+                        <span class="play-btn"><i class="fa-solid fa-play"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-7 col-12">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ x.vcategory }}</h5>
+                        <p class="card-text">{{ x.headlines }}</p>
+                        <a href="/user/viewvideo?msg={{ x.id }}" class="btn btn-sm bg-mycolor text-dark mt-2">
+                            View more <i class="fa-solid fa-eye"></i>
+                        </a>
+                        <p class="card-text meta mt-2">
+                            <i class="fa-solid fa-calendar-days"></i> {{ x.newsdata }}
+                            &nbsp;<i class="fa-solid fa-city"></i> {{ x.city }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div> -->
+
+<!-- ================= Category grid ================= -->
+<div class="row bg-light py-4 g-3">
+    {% for a in catdata %}
+    <div class="col-6 col-md-3 col-lg-2">
+        <div class="news-card card">
+            <div class="media-box">
+                <img src="{{ a.category_picture.url }}" alt="{{ a.category_name }}">
+            </div>
+            <div class="card-body">
+                <div class="card-text"><b>{{ a.category_name }}</b></div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+    function getYouTubeId(url) {
+        if (!url) return null;
+        const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{6,})/);
+        return match ? match[1] : null;
+    }
+
+    function playVideoNews(box) {
+        const url = box.getAttribute('data-video-url');
+        const id = getYouTubeId(url);
+        const embedUrl = id
+            ? 'https://www.youtube.com/embed/' + id + '?autoplay=1'
+            : url;
+        box.innerHTML =
+            '<iframe src=' + embedUrl + ' title="YouTube video player" ' +
+            'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
+            'allowfullscreen></iframe>';
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.video-embed-box').forEach(function (box) {
+            const url = box.getAttribute('data-video-url');
+            const id = getYouTubeId(url);
+            const img = box.querySelector('.video-thumb');
+            if (id && img) {
+                img.src = 'https://img.youtube.com/vi/' + id + '/hqdefault.jpg';
+            } else if (img) {
+                img.src = 'data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27400%27 height=%27225%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23222%27/%3E%3C/svg%3E';
+            }
+        });
+    });
+</script>
+{% endblock %}

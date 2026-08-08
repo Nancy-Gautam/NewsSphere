@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block childpage %}
+
+<style>
+.news-detail-card{
+    border:none;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 4px 20px rgba(0,0,0,.08);
+}
+
+.news-detail-card .news-img-wrap{
+    height:100%;
+    min-height:320px;
+    background:#000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+}
+
+.news-detail-card .news-img-wrap img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    background:#111;
+}
+
+.meta-info{
+    color:#777;
+    font-size:14px;
+}
+
+.badge-category{
+    background:#dc3545;
+    color:#fff;
+    padding:5px 14px;
+    border-radius:20px;
+    font-size:13px;
+    display:inline-block;
+    margin-bottom:10px;
+}
+
+.related-heading{
+    font-size:26px;
+    font-weight:700;
+    margin:35px 0 20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.video-news-card{
+    border:none;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 3px 15px rgba(0,0,0,.08);
+    transition:0.3s;
+    background:#fff;
+}
+
+.video-news-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.video-news-card iframe{
+    min-height:180px;
+    background:#000;
+}
+
+.watch-btn{
+    background:#dc3545;
+    color:#fff;
+    border:none;
+    padding:6px 16px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+    text-decoration:none;
+    display:inline-block;
+}
+
+.watch-btn:hover{
+    background:#b02a37;
+    color:#fff;
+}
+</style>
+
+<div class="text-center fs-2 mb-4">News <b class="text-mycolor">Details</b></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+
+            <!-- News details -->
+            {% for x in mynews %}
+            <div class="card news-detail-card mb-4">
+                <div class="row g-0">
+                    <div class="col-md-5">
+                        <div class="news-img-wrap">
+                            <img src="{{ x.news_picture.url }}" alt="{{ x.news_headlines }}">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body p-4">
+                            <span class="badge-category">{{ x.news_category }}</span>
+                            <h4 class="card-title fw-bold">{{ x.news_headlines }}</h4>
+                            <p class="card-text mt-3" style="text-align:justify;">{{ x.news_description }}</p>
+                            <p class="meta-info mt-3 mb-0">
+                                <i class="fa-solid fa-calendar-days"></i> {{ x.news_date }}
+                                &nbsp;|&nbsp;
+                                <i class="fa-solid fa-city"></i> {{ x.news_city }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="text-center text-muted py-5">
+                <h5>News not found.</h5>
+                <a href="/user/news" class="watch-btn mt-3 d-inline-block">Back to All News</a>
+            </div>
+            {% endfor %}
+            <!-- end news details -->
+
+            <!-- Related videos -->
+           {% if vdata %}
+<div class="related-heading">📹 Related Videos</div>
+<div class="row g-3 mb-5">
+    {% for x in vdata %}
+    <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="card video-news-card">
+            <div class="row g-0">
+                <div class="col-md-5">
+                    <iframe class="w-100 h-100"
+                            src="{{ x.vlink }}"
+                            title="{{ x.headlines }}"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="col-md-7">
+                    <div class="card-body">
+                        <span class="badge-category">{{ x.vcategory }}</span>
+                        <h6 class="card-title mt-2">{{ x.headlines }}</h6>
+                        <a href="{{ x.vlink }}" target="_blank" class="watch-btn mt-2">
+                            Watch <i class="fa-regular fa-eye"></i>
+                        </a>
+                        <p class="meta-info mt-2 mb-0">
+                            <i class="fa-solid fa-calendar-days"></i> {{ x.news_data }}
+                            &nbsp;|&nbsp;
+                            <i class="fa-solid fa-city"></i> {{ x.city }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+            <!-- end related videos -->
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

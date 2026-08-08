@@ -1,0 +1,11 @@
+asgiref==3.9.1
+Django==5.2.5
+pillow==12.1.1
+python-decouple==3.8
+sqlparse==0.5.3
+tzdata==2025.2
+PyMySQL==1.1.1
+gunicorn==22.0.0
+whitenoise==6.7.0
+django-cloudinary-storage==0.3.0
+cloudinary==1.41.0

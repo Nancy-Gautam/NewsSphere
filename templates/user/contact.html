@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block childpage %}
+
+<style>
+.contact-section{
+    background:#f8f9fa;
+    padding:60px 0;
+    min-height:80vh;
+}
+
+.contact-wrapper{
+    background:#fff;
+    border-radius:24px;
+    box-shadow:0 10px 40px rgba(0,0,0,.08);
+    overflow:hidden;
+    max-width:950px;
+    margin:0 auto;
+}
+
+.contact-info-side{
+    background:linear-gradient(145deg,#dc3545,#a5192a);
+    color:#fff;
+    padding:50px 40px;
+    height:100%;
+    position:relative;
+    overflow:hidden;
+}
+
+.contact-info-side::before{
+    content:"";
+    position:absolute;
+    width:200px;
+    height:200px;
+    background:rgba(255,255,255,.08);
+    border-radius:50%;
+    top:-60px;
+    right:-60px;
+}
+
+.contact-info-side::after{
+    content:"";
+    position:absolute;
+    width:140px;
+    height:140px;
+    background:rgba(255,255,255,.06);
+    border-radius:50%;
+    bottom:-40px;
+    left:-40px;
+}
+
+.contact-info-side h2{
+    font-weight:800;
+    font-size:30px;
+    margin-bottom:15px;
+}
+
+.contact-info-side p{
+    opacity:.9;
+    font-size:15px;
+    line-height:1.7;
+}
+
+.info-item{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-top:25px;
+    position:relative;
+    z-index:2;
+}
+
+.info-item .icon-circle{
+    width:42px;
+    height:42px;
+    background:rgba(255,255,255,.15);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+.contact-form-side{
+    padding:50px 40px;
+}
+
+.form-floating-group{
+    position:relative;
+    margin-bottom:22px;
+}
+
+.form-floating-group input,
+.form-floating-group textarea{
+    width:100%;
+    border:none;
+    border-bottom:2px solid #e5e5e5;
+    padding:10px 5px;
+    font-size:15px;
+    outline:none;
+    background:transparent;
+    transition:0.3s;
+    resize:none;
+}
+
+.form-floating-group input:focus,
+.form-floating-group textarea:focus{
+    border-bottom-color:#dc3545;
+}
+
+.form-floating-group label{
+    position:absolute;
+    top:10px;
+    left:5px;
+    color:#999;
+    font-size:15px;
+    pointer-events:none;
+    transition:0.25s;
+}
+
+.form-floating-group input:focus ~ label,
+.form-floating-group input:not(:placeholder-shown) ~ label,
+.form-floating-group textarea:focus ~ label,
+.form-floating-group textarea:not(:placeholder-shown) ~ label{
+    top:-14px;
+    font-size:12px;
+    color:#dc3545;
+    font-weight:600;
+}
+
+.submit-btn{
+    background:linear-gradient(135deg,#dc3545,#b02a37);
+    color:#fff;
+    border:none;
+    padding:13px 40px;
+    border-radius:30px;
+    font-weight:600;
+    font-size:15px;
+    letter-spacing:.5px;
+    transition:0.3s;
+    box-shadow:0 5px 15px rgba(220,53,69,.3);
+}
+
+.submit-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 22px rgba(220,53,69,.4);
+    color:#fff;
+}
+
+.form-heading{
+    font-weight:800;
+    font-size:24px;
+    margin-bottom:5px;
+    color:#222;
+}
+
+.form-subheading{
+    color:#888;
+    font-size:14px;
+    margin-bottom:30px;
+}
+</style>
+
+<div class="contact-section">
+    <div class="contact-wrapper">
+        <div class="row g-0">
+
+            <div class="col-lg-5">
+                <div class="contact-info-side">
+                    <h2>Let's Talk</h2>
+                    <p>Have a question, feedback, or a story tip? We'd love to hear from you — reach out anytime.</p>
+
+                    <div class="info-item">
+                        <div class="icon-circle"><i class="fa-solid fa-envelope"></i></div>
+                        <div>support@newssphere.com</div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="icon-circle"><i class="fa-solid fa-phone"></i></div>
+                        <div>+91 842927743</div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="icon-circle"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>India</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="contact-form-side">
+                    <div class="form-heading">Send a Message</div>
+                    <div class="form-subheading">We'll get back to you within 24 hours.</div>
+
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <div class="form-floating-group">
+                            <input type="text" name="name" placeholder=" " required>
+                            <label>Your Name</label>
+                        </div>
+
+                        <div class="form-floating-group">
+                            <input type="email" name="email" placeholder=" " required>
+                            <label>Email Address</label>
+                        </div>
+
+                        <div class="form-floating-group">
+                            <input type="number" name="mobile" placeholder=" " required>
+                            <label>Mobile Number</label>
+                        </div>
+
+                        <div class="form-floating-group">
+                            <textarea name="msg" rows="4" placeholder=" " required></textarea>
+                            <label>Your Message</label>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            Send Message <i class="fa-solid fa-paper-plane ms-1"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

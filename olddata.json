@@ -1,0 +1,411 @@
+[
+{
+  "model": "user.contactus",
+  "pk": 1,
+  "fields": {
+    "name": null,
+    "email": null,
+    "mobile": null,
+    "message": "asdfghjkl"
+  }
+},
+{
+  "model": "user.contactus",
+  "pk": 2,
+  "fields": {
+    "name": null,
+    "email": null,
+    "mobile": null,
+    "message": "hi"
+  }
+},
+{
+  "model": "user.contactus",
+  "pk": 3,
+  "fields": {
+    "name": "Nancy Gautam",
+    "email": "nancygpolytechnic@gmail.com",
+    "mobile": "8382097163",
+    "message": "hlo"
+  }
+},
+{
+  "model": "user.slider",
+  "pk": 1,
+  "fields": {
+    "headlines": "CJP's 'Chalo Sansad' Protest Sparks Clashes with Police in New Delhi",
+    "slider_Dec": "Thousands of CJP supporters marched towards Parliament on 20 July to demand reforms in the examination system and the resignation of the Education Minister. The protest turned tense after clashes with police, who used barricades and crowd-control measures to stop the march.",
+    "slider_picture": "static/slider/images_3.jpeg"
+  }
+},
+{
+  "model": "user.category",
+  "pk": 1,
+  "fields": {
+    "category_name": "Education",
+    "category_picture": "static/categroy/sm9.jpg"
+  }
+},
+{
+  "model": "user.category",
+  "pk": 2,
+  "fields": {
+    "category_name": "Sports",
+    "category_picture": "static/categroy/sm13.jpg"
+  }
+},
+{
+  "model": "user.category",
+  "pk": 3,
+  "fields": {
+    "category_name": "Government",
+    "category_picture": "static/categroy/an25.jpg"
+  }
+},
+{
+  "model": "user.category",
+  "pk": 4,
+  "fields": {
+    "category_name": "career",
+    "category_picture": "static/categroy/an16.jpg"
+  }
+},
+{
+  "model": "user.category",
+  "pk": 5,
+  "fields": {
+    "category_name": "Hollywood",
+    "category_picture": "static/categroy/an5.jpg"
+  }
+},
+{
+  "model": "user.category",
+  "pk": 6,
+  "fields": {
+    "category_name": "Bollywood",
+    "category_picture": "static/categroy/an9.jpg"
+  }
+},
+{
+  "model": "user.category",
+  "pk": 7,
+  "fields": {
+    "category_name": "Politics",
+    "category_picture": "static/categroy/an11.jpg"
+  }
+},
+{
+  "model": "user.category",
+  "pk": 8,
+  "fields": {
+    "category_name": "Technology",
+    "category_picture": "static/categroy/Technology.jpg"
+  }
+},
+{
+  "model": "user.category",
+  "pk": 9,
+  "fields": {
+    "category_name": "Science & Space",
+    "category_picture": "static/categroy/Solar-System-diagram-scaled.jpeg"
+  }
+},
+{
+  "model": "user.category",
+  "pk": 10,
+  "fields": {
+    "category_name": "🌱 Environment",
+    "category_picture": "static/categroy/f4d1af8353a67e3fc1fe7d0eed7e0dd1.jpg"
+  }
+},
+{
+  "model": "user.category",
+  "pk": 11,
+  "fields": {
+    "category_name": "🌤️ Weather",
+    "category_picture": "static/categroy/images_6.jpeg"
+  }
+},
+{
+  "model": "user.category",
+  "pk": 12,
+  "fields": {
+    "category_name": "⚖️ Crime",
+    "category_picture": "static/categroy/gavel-scales-golden-question-mark-260nw-2556306331.webp"
+  }
+},
+{
+  "model": "user.city",
+  "pk": 1,
+  "fields": {
+    "city_name": "Delhi",
+    "city_picture": "static/city/an17.jpg"
+  }
+},
+{
+  "model": "user.city",
+  "pk": 2,
+  "fields": {
+    "city_name": "Mumbai",
+    "city_picture": "static/city/an19.jpg"
+  }
+},
+{
+  "model": "user.city",
+  "pk": 3,
+  "fields": {
+    "city_name": "Lucknow",
+    "city_picture": "static/city/an21.jpg"
+  }
+},
+{
+  "model": "user.city",
+  "pk": 4,
+  "fields": {
+    "city_name": "Bangalore",
+    "city_picture": "static/city/an23.jpg"
+  }
+},
+{
+  "model": "user.city",
+  "pk": 5,
+  "fields": {
+    "city_name": "Jaipur",
+    "city_picture": "static/city/an24.jpg"
+  }
+},
+{
+  "model": "user.mynews",
+  "pk": 1,
+  "fields": {
+    "news_category": 1,
+    "news_city": 3,
+    "news_picture": "static/news/an.jpeg",
+    "news_headlines": "IIM Lucknow Launches B.S. Program in AI and Business Analytics",
+    "news_description": "The Indian Institute of Management (IIM) Lucknow has announced admissions for its new Bachelor of Science (B.S.) program in Artificial Intelligence and Business Analytics. The program is designed to equip students with advanced knowledge in AI, data analytics, and business management, preparing them for careers in the rapidly growing technology sector.",
+    "news_date": "2026-06-29"
+  }
+},
+{
+  "model": "user.mynews",
+  "pk": 2,
+  "fields": {
+    "news_category": 7,
+    "news_city": 1,
+    "news_picture": "static/news/images_4.jpeg",
+    "news_headlines": "CJP's 'Chalo Sansad' Protest Sparks Clashes with Police in New Delhi",
+    "news_description": "Detailed News Description (20 July CJP Protest):\r\n\r\nOn 20 July 2026, thousands of supporters of the Cockroach Janta Party (CJP) gathered at Jantar Mantar, New Delhi, and began the \"Chalo Sansad\" march on the opening day of Parliament's Monsoon Session. The protesters demanded accountability for the alleged NEET paper leak, reforms in the examination system, and the resignation of the Union Education Minister.\r\n\r\nAs the crowd attempted to move toward Parliament, Delhi Police stopped the march by setting up barricades and enforcing prohibitory orders around the high-security zone. When some protesters tried to cross the barricades, clashes broke out. Police used lathi-charge (batons), tear gas shells, and other crowd-control measures to disperse the gathering. According to reports, over 60 protesters and more than 100 police personnel were injured during the violence. Several protesters were detained, traffic was disrupted across central Delhi, and some Metro stations were temporarily closed for security reasons. The incident triggered widespread political debate and later led to court proceedings over allegations of excessive use of force by the police.",
+    "news_date": "2026-07-20"
+  }
+},
+{
+  "model": "user.mynews",
+  "pk": 3,
+  "fields": {
+    "news_category": 4,
+    "news_city": 3,
+    "news_picture": "static/news/652125445_1366493875504634_1097681495354402795_n.jpg",
+    "news_headlines": "Mega Job Fair to Be Held in Lucknow, 2,880 Vacancies Announced",
+    "news_description": "The Uttar Pradesh Employment Department will organize a Mega Job Fair on 3 August 2026 at Dr. A.P.J. Abdul Kalam Technical University (AKTU), Lucknow. Around 2,880 vacancies will be offered by multiple private companies across sectors such as IT, manufacturing, sales, healthcare, banking, and customer support. Eligible candidates, including freshers and experienced job seekers, can participate after registering on the Rojgaar Sangam portal. Applicants should carry their resume, educational certificates, Aadhaar card, and passport-size photographs. The initiative aims to connect skilled youth with employers and create better employment opportunities in Uttar Pradesh",
+    "news_date": "2026-08-03"
+  }
+},
+{
+  "model": "user.mynews",
+  "pk": 4,
+  "fields": {
+    "news_category": 2,
+    "news_city": 2,
+    "news_picture": "static/news/mumbai_league.jpg",
+    "news_headlines": "T20 Mumbai League 2026 Creates History with Record 3.8 Billion Watch Minutes",
+    "news_description": "The Mumbai Cricket Association (MCA) announced that the T20 Mumbai League 2026 has become the most successful season in the tournament's history by recording more than 3.8 billion watch minutes across television and digital streaming platforms. The remarkable growth reflects the increasing popularity of domestic cricket in India and the strong support received from fans across the country. The tournament witnessed packed stadiums, high television ratings, and a significant rise in online viewership compared to previous editions.\r\n\r\nOne of the biggest highlights of the 2026 season was the introduction of the first-ever Women's T20 Mumbai League, providing a competitive platform for talented female cricketers from Maharashtra. The initiative received widespread appreciation from players, coaches, and cricket experts, who described it as an important step toward strengthening women's cricket at the domestic level. The league featured several exciting matches, emerging young players, and competitive performances that attracted a large audience.\r\n\r\nAccording to the MCA, the tournament experienced over 65 million television viewers, a 61% increase in TV watch time, and a 66% growth in digital viewership, making it one of India's fastest-growing domestic T20 competitions. Officials credited the success to better broadcasting, fan engagement, improved marketing campaigns, and the high quality of cricket played throughout the tournament. The outstanding response from cricket fans has encouraged the association to further expand the league in the coming seasons and continue developing young cricket talent in Mumbai",
+    "news_date": "2026-07-22"
+  }
+},
+{
+  "model": "user.mynews",
+  "pk": 5,
+  "fields": {
+    "news_category": 3,
+    "news_city": 4,
+    "news_picture": "static/news/Vidah-Sauda-state-legislature-building-Karnataka-Bengaluru.webp",
+    "news_headlines": "Karnataka Government Unveils ‘Beyond Bengaluru’ Policy to Boost Growth Across the State",
+    "news_description": "The Karnataka government has announced the ‘Beyond Bengaluru’ policy, a major initiative aimed at promoting balanced economic development across the state instead of concentrating investment only in Bengaluru. Deputy Chief Minister D.K. Shivakumar said the policy will be rolled out within the next 100 days and will focus on developing infrastructure, attracting industries, supporting startups, and creating employment opportunities in tier-2 and tier-3 cities.\r\n\r\nThe government plans to improve road and transport connectivity, strengthen industrial corridors, and encourage technology companies to establish offices outside Bengaluru. Officials believe the move will reduce pressure on Bengaluru's traffic and infrastructure while bringing new investment and job opportunities to cities such as Mysuru, Hubballi-Dharwad, Mangaluru, Belagavi, Kalaburagi, and Shivamogga. The policy is also expected to improve access to modern facilities, boost local businesses, and promote regional economic growth across Karnataka.\r\n\r\nAccording to the state government, the initiative will include incentives for investors, support for innovation hubs, and measures to improve the ease of doing business in emerging cities. The policy aims to create sustainable development across Karnataka by ensuring that economic progress is shared beyond the capital city and that young professionals can find quality employment opportunities closer to their hometowns.",
+    "news_date": "2026-07-25"
+  }
+},
+{
+  "model": "user.mynews",
+  "pk": 7,
+  "fields": {
+    "news_category": 7,
+    "news_city": 1,
+    "news_picture": "static/news/cjp.jpeg",
+    "news_headlines": "Union Education Minister Dharmendra Pradhan Resigns Amid Nationwide Student Protests",
+    "news_description": "Union Education Minister Dharmendra Pradhan resigned from his post on 25 July 2026 after weeks of nationwide student-led protests over alleged examination paper leaks and demands for reforms in India's examination system. The demonstrations, which spread across several states, intensified pressure on the central government, with students calling for accountability, transparent recruitment, and stronger safeguards against exam irregularities.\r\n\r\nFollowing his resignation, the central government accepted key demands of the protesters and announced a high-level task force to recommend comprehensive reforms to the country's examination system. The government also introduced legislative measures to strengthen anti-paper leak laws and improve the security and transparency of competitive examinations. The resignation marked one of the most significant political outcomes of the nationwide youth movement.\r\n\r\nAfter stepping down, Dharmendra Pradhan returned to his home state of Odisha, where BJP leaders and supporters welcomed him. Meanwhile, the BJP dismissed reports suggesting that he had been offered another cabinet portfolio, calling such claims \"baseless\" and \"unfounded.\"",
+    "news_date": "2026-07-25"
+  }
+},
+{
+  "model": "user.mynews",
+  "pk": 8,
+  "fields": {
+    "news_category": 6,
+    "news_city": 5,
+    "news_picture": "static/news/images_5.jpeg",
+    "news_headlines": "National Award Winner Shashwat Sachdev Credits Jaipur for His Musical Journey",
+    "news_description": "Bollywood music composer Shashwat Sachdev, who recently won a National Film Award, said that his success is deeply connected to his hometown, Jaipur. Speaking after receiving the prestigious honour, he shared that Jaipur's rich cultural heritage, traditional music, and artistic environment played a major role in shaping his career. He expressed gratitude to his family, teachers, and the city for inspiring him throughout his journey.\r\n\r\nShashwat Sachdev has composed music for several Bollywood films and projects and is known for blending Indian classical sounds with modern music. He said that receiving the National Award is not just a personal achievement but also a proud moment for Jaipur and Rajasthan. He encouraged young musicians to stay dedicated to their passion and continue representing their roots on national and international platforms.",
+    "news_date": "2026-07-24"
+  }
+},
+{
+  "model": "user.mynews",
+  "pk": 9,
+  "fields": {
+    "news_category": 5,
+    "news_city": 2,
+    "news_picture": "static/news/hollywood.jpg",
+    "news_headlines": "Hollywood Comes to Mumbai as Christopher Nolan Premieres The Odyssey",
+    "news_description": "Mumbai witnessed a landmark moment for cinema as acclaimed Hollywood director Christopher Nolan arrived in the city for the grand premiere of his upcoming film The Odyssey. The special event was held at PVR ICON IMAX, Phoenix Palladium, Lower Parel, and attracted a large gathering of film lovers, media, and celebrities. Joining Nolan were Hollywood stars Matt Damon, Tom Holland, and producer Emma Thomas, making it one of the biggest international film events ever hosted in Mumbai. During the premiere, Christopher Nolan thanked Indian audiences for their continuous support and said it was always a pleasure to visit India. Matt Damon also expressed his appreciation for the warm welcome, while Tom Holland received loud cheers from fans gathered outside the venue. The event marked the first public screening of The Odyssey before its worldwide release, making Mumbai the first city where the film was officially showcased to a live audience. The premiere generated massive excitement on social media, with photos and videos of the stars going viral within hours. Film critics described the event as a significant milestone that highlighted Mumbai's growing importance as a global entertainment hub. Fans praised the opportunity to see Hollywood's biggest stars in India and welcomed the increasing collaboration between the Indian and international film industries.",
+    "news_date": "2026-07-10"
+  }
+},
+{
+  "model": "user.vnews",
+  "pk": 4,
+  "fields": {
+    "vcategory": 7,
+    "city": 1,
+    "headlines": "CJP's 'Chalo Sansad' Protest Sparks Clashes with Police in New Delhi",
+    "news": "On 20 July 2026, thousands of supporters of the Cockroach Janta Party (CJP) gathered at Jantar Mantar, New Delhi, and began the \"Chalo Sansad\" march on the opening day of Parliament's Monsoon Session. The protesters demanded accountability for the alleged NEET paper leak, reforms in the examination system, and the resignation of the Union Education Minister.\r\n\r\nAs the crowd attempted to move toward Parliament, Delhi Police stopped the march by setting up barricades and enforcing prohibitory orders around the high-security zone. When some protesters tried to cross the barricades, clashes broke out. Police used lathi-charge (batons), tear gas shells, and other crowd-control measures to disperse the gathering. According to reports, over 60 protesters and more than 100 police personnel were injured during the violence. Several protesters were detained, traffic was disrupted across central Delhi, and some Metro stations were temporarily closed for security reasons. The incident triggered widespread political debate and later led to court proceedings over allegations of excessive use of force by the police.",
+    "vlink": "https://www.youtube.com/embed/0j0vUAo52PM",
+    "news_data": "2026-07-20"
+  }
+},
+{
+  "model": "user.vnews",
+  "pk": 5,
+  "fields": {
+    "vcategory": 4,
+    "city": 3,
+    "headlines": "Lucknow to Host Mega Job Fair, Offering Thousands of Employment Opportunities",
+    "news": "The Uttar Pradesh Employment Department will organize a Mega Job Fair on 3 August 2026 at Dr. A.P.J. Abdul Kalam Technical University (AKTU), Lucknow. Around 2,880 vacancies will be offered by multiple private companies across sectors such as IT, manufacturing, sales, healthcare, banking, and customer support. Eligible candidates, including freshers and experienced job seekers, can participate after registering on the Rojgaar Sangam portal. Applicants should carry their resume, educational certificates, Aadhaar card, and passport-size photographs. The initiative aims to connect skilled youth with employers and create better employment opportunities in Uttar Pradesh.",
+    "vlink": "https://www.youtube.com/embed/6b623T_6boE",
+    "news_data": "2026-08-03"
+  }
+},
+{
+  "model": "user.vnews",
+  "pk": 6,
+  "fields": {
+    "vcategory": 2,
+    "city": 2,
+    "headlines": "T20 Mumbai League 2026 Sets Record with 3.8 Billion Watch Minutes",
+    "news": "The Mumbai Cricket Association (MCA) announced that the T20 Mumbai League 2026 has become the most successful season in the tournament's history by recording more than 3.8 billion watch minutes across television and digital streaming platforms. The remarkable growth reflects the increasing popularity of domestic cricket in India and the strong support received from fans across the country. The tournament witnessed packed stadiums, high television ratings, and a significant rise in online viewership compared to previous editions.\r\n\r\nOne of the biggest highlights of the 2026 season was the introduction of the first-ever Women's T20 Mumbai League, providing a competitive platform for talented female cricketers from Maharashtra. The initiative received widespread appreciation from players, coaches, and cricket experts, who described it as an important step toward strengthening women's cricket at the domestic level. The league featured several exciting matches, emerging young players, and competitive performances that attracted a large audience.\r\n\r\nAccording to the MCA, the tournament experienced over 65 million television viewers, a 61% increase in TV watch time, and a 66% growth in digital viewership, making it one of India's fastest-growing domestic T20 competitions. Officials credited the success to better broadcasting, fan engagement, improved marketing campaigns, and the high quality of cricket played throughout the tournament. The outstanding response from cricket fans has encouraged the association to further expand the league in the coming seasons and continue developing young cricket talent in Mumbai.",
+    "vlink": "https://www.youtube.com/embed/F62YNMNfvA4",
+    "news_data": "2026-07-22"
+  }
+},
+{
+  "model": "user.vnews",
+  "pk": 7,
+  "fields": {
+    "vcategory": 3,
+    "city": 4,
+    "headlines": "Karnataka Government Unveils ‘Beyond Bengaluru’ Policy to Boost Growth Across the State",
+    "news": "The Karnataka government has announced the ‘Beyond Bengaluru’ policy, a major initiative aimed at promoting balanced economic development across the state instead of concentrating investment only in Bengaluru. Deputy Chief Minister D.K. Shivakumar said the policy will be rolled out within the next 100 days and will focus on developing infrastructure, attracting industries, supporting startups, and creating employment opportunities in tier-2 and tier-3 cities.\r\n\r\nThe government plans to improve road and transport connectivity, strengthen industrial corridors, and encourage technology companies to establish offices outside Bengaluru. Officials believe the move will reduce pressure on Bengaluru's traffic and infrastructure while bringing new investment and job opportunities to cities such as Mysuru, Hubballi-Dharwad, Mangaluru, Belagavi, Kalaburagi, and Shivamogga. The policy is also expected to improve access to modern facilities, boost local businesses, and promote regional economic growth across Karnataka.\r\n\r\nAccording to the state government, the initiative will include incentives for investors, support for innovation hubs, and measures to improve the ease of doing business in emerging cities. The policy aims to create sustainable development across Karnataka by ensuring that economic progress is shared beyond the capital city and that young professionals can find quality employment opportunities closer to their hometowns.",
+    "vlink": "https://www.youtube.com/embed/lDz03ZiZ4-8",
+    "news_data": "2026-07-25"
+  }
+},
+{
+  "model": "user.vnews",
+  "pk": 8,
+  "fields": {
+    "vcategory": 5,
+    "city": 2,
+    "headlines": "Hollywood Comes to Mumbai as Christopher Nolan Premieres The Odyssey",
+    "news": "Mumbai witnessed a landmark moment for cinema as acclaimed Hollywood director Christopher Nolan arrived in the city for the grand premiere of his upcoming film The Odyssey. The special event was held at PVR ICON IMAX, Phoenix Palladium, Lower Parel, and attracted a large gathering of film lovers, media, and celebrities. Joining Nolan were Hollywood stars Matt Damon, Tom Holland, and producer Emma Thomas, making it one of the biggest international film events ever hosted in Mumbai.\r\n\r\nDuring the premiere, Christopher Nolan thanked Indian audiences for their continuous support and said it was always a pleasure to visit India. Matt Damon also expressed his appreciation for the warm welcome, while Tom Holland received loud cheers from fans gathered outside the venue. The event marked the first public screening of The Odyssey before its worldwide release, making Mumbai the first city where the film was officially showcased to a live audience.\r\n\r\nThe premiere generated massive excitement on social media, with photos and videos of the stars going viral within hours. Film critics described the event as a significant milestone that highlighted Mumbai's growing importance as a global entertainment hub. Fans praised the opportunity to see Hollywood's biggest stars in India and welcomed the increasing collaboration between the Indian and international film industries.",
+    "vlink": "https://www.youtube.com/embed/CjZTB_QoVfY",
+    "news_data": "2026-07-10"
+  }
+},
+{
+  "model": "user.vnews",
+  "pk": 9,
+  "fields": {
+    "vcategory": 7,
+    "city": 1,
+    "headlines": "Union Education Minister Dharmendra Pradhan Resigns Amid Nationwide Student Protests",
+    "news": "Union Education Minister Dharmendra Pradhan resigned from his post on 25 July 2026 after weeks of nationwide student-led protests over alleged examination paper leaks and demands for reforms in India's examination system. The demonstrations, which spread across several states, intensified pressure on the central government, with students calling for accountability, transparent recruitment, and stronger safeguards against exam irregularities.\r\n\r\nFollowing his resignation, the central government accepted key demands of the protesters and announced a high-level task force to recommend comprehensive reforms to the country's examination system. The government also introduced legislative measures to strengthen anti-paper leak laws and improve the security and transparency of competitive examinations. The resignation marked one of the most significant political outcomes of the nationwide youth movement.\r\n\r\nAfter stepping down, Dharmendra Pradhan returned to his home state of Odisha, where BJP leaders and supporters welcomed him. Meanwhile, the BJP dismissed reports suggesting that he had been offered another cabinet portfolio, calling such claims \"baseless\" and \"unfounded.\"",
+    "vlink": "https://www.youtube.com/embed/o3uhBd28EfA",
+    "news_data": "2026-07-25"
+  }
+},
+{
+  "model": "user.vnews",
+  "pk": 10,
+  "fields": {
+    "vcategory": 6,
+    "city": 5,
+    "headlines": "National Award Winner Shashwat Sachdev Credits Jaipur for His Musical Journey",
+    "news": "Bollywood music composer Shashwat Sachdev, who recently won a National Film Award, said that his success is deeply connected to his hometown, Jaipur. Speaking after receiving the prestigious honour, he shared that Jaipur's rich cultural heritage, traditional music, and artistic environment played a major role in shaping his career. He expressed gratitude to his family, teachers, and the city for inspiring him throughout his journey.\r\n\r\nShashwat Sachdev has composed music for several Bollywood films and projects and is known for blending Indian classical sounds with modern music. He said that receiving the National Award is not just a personal achievement but also a proud moment for Jaipur and Rajasthan. He encouraged young musicians to stay dedicated to their passion and continue representing their roots on national and international platforms.",
+    "vlink": "https://www.youtube.com/embed/NaJIzxIHrRE",
+    "news_data": "2026-07-24"
+  }
+},
+{
+  "model": "user.jobs",
+  "pk": 13,
+  "fields": {
+    "job_title": "ISRO Careers",
+    "job_link": "https://www.sarkariresult.com/2026/isro-various-post-jul26/",
+    "job_picture": "static/job/images_1.jpeg"
+  }
+},
+{
+  "model": "user.jobs",
+  "pk": 14,
+  "fields": {
+    "job_title": "Railway RRB Technician",
+    "job_link": "https://www.sarkariresult.com/railway/rrb-technician-cen-02-2026/",
+    "job_picture": "static/job/images_2.jpeg"
+  }
+},
+{
+  "model": "user.jobs",
+  "pk": 15,
+  "fields": {
+    "job_title": "ISRO Graduate Apprentice Trainee and Diploma Apprentice Trainee Recruitment 2026 Apply Online",
+    "job_link": "https://www.sarkariresult.com/2026/isro-ursc-apprentice-jul26/",
+    "job_picture": "static/job/images_1_jZbnWqq.jpeg"
+  }
+},
+{
+  "model": "user.jobs",
+  "pk": 16,
+  "fields": {
+    "job_title": "Indian Navy Short Service Commissions SSC Executive, Education and Technical June 2027 Course AT Online Form 2026",
+    "job_link": "https://www.sarkariresult.com/2026/indian-navy-ssc-june2027-at27/",
+    "job_picture": "static/job/images_3.jpeg"
+  }
+},
+{
+  "model": "user.jobs",
+  "pk": 17,
+  "fields": {
+    "job_title": "UP Uttar Pradesh Anganwadi Worker Bharti Recruitment 2026 Apply Online District Wise Vacancy Details, Unnao, Ayodhay, Basti, Saharanpur, Firozabad, Sitapur Hapur, Etah and other Various District",
+    "job_link": "https://www.sarkariresult.com/2026/up-anganwadi-worker/",
+    "job_picture": "static/job/images_3_kRwDpd5.jpeg"
+  }
+},
+{
+  "model": "user.jobs",
+  "pk": 18,
+  "fields": {
+    "job_title": "NMDC Steel Executive Trainee Recruitment 2026 Apply Online for 102 Post",
+    "job_link": "https://www.sarkariresult.com/2026/nmdc-executive-trainee-july26/",
+    "job_picture": "static/job/images_3_0BBVGDe.jpeg"
+  }
+}
+]

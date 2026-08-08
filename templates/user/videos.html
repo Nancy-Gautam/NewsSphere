@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block childpage %}
+
+<style>
+.video-section{
+    background:#f8f9fa;
+    padding:40px 0;
+}
+
+.video-card{
+    border:none;
+    border-radius:20px;
+    overflow:hidden;
+    transition:0.4s;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+    background:#fff;
+}
+
+.video-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+.video-frame{
+    width:100%;
+    height:250px;
+    border:none;
+}
+
+
+
+.category-btn{
+    margin:5px;
+}
+
+.card-title{
+    font-weight:700;
+    color:#222;
+}
+
+.card-footer{
+    background:#fff;
+    border-top:1px solid #eee;
+}
+
+.heading{
+    font-size:45px;
+    font-weight:bold;
+}
+
+.heading span{
+    color:red;
+}
+</style>
+
+<div class="container-fluid video-section">
+
+    <div class="text-center mb-5">
+        <h1 class="heading">
+            Latest <span>News Videos</span>
+        </h1>
+    </div>
+
+    <!-- Categories -->
+    <div class="text-center mb-4">
+        {% for i in cdata %}
+        <a href="#" class="btn btn-danger rounded-pill category-btn">
+            {{i.category_name}}
+        </a>
+        {% endfor %}
+    </div>
+
+    <!-- Cities -->
+    <div class="text-center mb-5">
+        {% for i in ctdata %}
+        <a href="/user/videos?cityid={{i.id}}"
+           class="btn btn-outline-primary rounded-pill category-btn">
+            {{i.city_name}}
+        </a>
+        {% endfor %}
+    </div>
+
+    <div class="row">
+
+        {% for x in vdata %}
+
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+
+            <div class="card video-card h-100">
+
+                <!-- Video -->
+                <iframe class="video-frame"
+                        src="{{x.vlink}}?rel=0"
+                        title="{{x.headlines}}"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+
+                </iframe>
+
+                <!-- Content -->
+                <div class="card-body">
+
+                    <span class="badge bg-danger">
+                        {{x.vcategory}}
+                    </span>
+
+                    <h5 class="card-title mt-3">
+                        {{x.headlines}}
+                    </h5>
+
+                    <p class="text-muted">
+                        {{x.news|truncatewords:25}}
+                    </p>
+
+                </div>
+
+                <div class="card-footer">
+
+                    <small class="text-muted">
+                        📅 {{x.news_data}}
+                    </small>
+
+                    <br>
+
+                    <small class="text-primary">
+                        🏙️ {{x.city}}
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

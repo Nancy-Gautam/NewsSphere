@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block childpage %}
+
+<style>
+.jobs-section{
+    background:#f8f9fa;
+    padding:40px 0;
+}
+
+.job-card{
+    border:none;
+    border-radius:16px;
+    overflow:hidden;
+    background:#fff;
+    box-shadow:0 3px 15px rgba(0,0,0,.08);
+    transition:0.3s;
+}
+
+.job-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
+}
+
+.job-img-box{
+    background:#fff5f5;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:100%;
+    min-height:120px;
+    padding:15px;
+}
+
+.job-img-box img{
+    max-height:70px;
+    object-fit:contain;
+}
+
+.job-title{
+    font-size:19px;
+    font-weight:700;
+    color:#222;
+    text-decoration:none;
+}
+
+.job-title:hover{
+    color:#dc3545;
+}
+
+.apply-btn{
+    background:#dc3545;
+    color:#fff;
+    border:none;
+    padding:8px 22px;
+    border-radius:25px;
+    font-weight:600;
+    font-size:14px;
+    text-decoration:none;
+    display:inline-block;
+    transition:0.3s;
+}
+
+.apply-btn:hover{
+    background:#b02a37;
+    color:#fff;
+}
+
+.heading{
+    font-size:42px;
+    font-weight:bold;
+}
+
+.heading span{
+    color:#dc3545;
+}
+</style>
+
+<div class="jobs-section">
+
+    <div class="text-center mb-5">
+        <h1 class="heading">
+            Latest <span>Jobs</span>
+        </h1>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                {% for i in jdata %}
+                <div class="card job-card mb-4">
+                    <div class="row g-0">
+
+                        <div class="col-md-3">
+                            <div class="job-img-box">
+                                <img src="/{{ i.job_picture }}" alt="{{ i.job_title }}">
+                            </div>
+                        </div>
+
+                        <div class="col-md-9">
+                            <div class="card-body d-flex flex-column justify-content-center h-100">
+                                <a href="{{ i.job_link }}" class="job-title" target="_blank">
+                                    {{ i.job_title }}
+                                </a>
+                                <p class="text-muted mb-3 mt-1">
+                                </p>
+                                <a href="{{ i.job_link }}" class="apply-btn" target="_blank">
+                                    Apply Now →
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% if not jdata %}
+                <div class="text-center text-muted py-5">
+                    <h5>No jobs available right now. Please check back later!</h5>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/all.css' %}" rel="stylesheet"/>
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <title>FlashPoint News</title>
+    <style>
+        :root {
+            --navy: #0f1b2b;
+            --navy-light: #16273d;
+            --gold: #f2b705;
+            --gold-soft: #ffe9a8;
+            --brick: #d94f30;
+            --teal: #0f8a8a;
+            --bgcolor: linear-gradient(120deg, #0f1b2b 0%, #16273d 55%, #0f3d3d 100%);
+            --card-bg: #ffffff;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            overflow-x: hidden;
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            background: #f4f5f7;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+
+        /* ================= Top info strip ================= */
+        .top-bar {
+            background: var(--bgcolor) !important;
+            font-size: 13px;
+            letter-spacing: .3px;
+        }
+        .top-bar > div {
+            padding: 6px 4px;
+            word-break: break-word;
+            color: #e8e8e8;
+        }
+        .top-bar i { color: var(--gold); margin-right: 4px; }
+        .top-bar .jobs-link {
+            background: var(--gold);
+            color: var(--navy);
+            font-weight: 700;
+            border-radius: 20px;
+            padding: 3px 14px;
+            display: inline-block;
+            text-decoration: none;
+            transition: all .25s ease;
+        }
+        .top-bar .jobs-link:hover { background: var(--gold-soft); transform: scale(1.05); }
+
+        /* ================= Brand row ================= */
+        .brand-row { padding: 14px 4%; background: #fff; }
+        .brand-row h3 {
+            font-weight: 800;
+            letter-spacing: .5px;
+            margin: 0;
+        }
+        .brand-row h3 .accent {
+            color: var(--brick);
+            position: relative;
+        }
+        .social-icon {
+            color: #666;
+            border: 1.5px solid #ddd;
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all .3s ease;
+            text-decoration: none;
+        }
+        .social-icon:hover {
+            background: var(--teal);
+            color: #fff;
+            border-color: var(--teal);
+            transform: translateY(-3px) rotate(8deg);
+        }
+        .cart-btn {
+            background: var(--navy);
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            padding: 8px 18px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all .25s ease;
+        }
+        .cart-btn:hover { background: var(--brick); color: #fff; }
+        .cart-btn .badge { background: var(--gold); color: var(--navy); }
+
+        /* ================= NAVBAR (custom, no dependency on bootstrap JS) ================= */
+        .site-nav {
+            background: var(--navy);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0,0,0,.25);
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6px 4%;
+        }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 26px;
+            color: var(--gold);
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links li a {
+            display: block;
+            color: #ddd;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14.5px;
+            padding: 14px 16px;
+            position: relative;
+            transition: color .25s ease;
+        }
+        .nav-links li a::after {
+            content: "";
+            position: absolute;
+            left: 16px;
+            right: 16px;
+            bottom: 8px;
+            height: 2px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .25s ease;
+        }
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: var(--gold);
+        }
+        .nav-links li a:hover::after,
+        .nav-links li a.active::after {
+            transform: scaleX(1);
+        }
+        .nav-search {
+            display: flex;
+            gap: 6px;
+        }
+        .nav-search input {
+            border-radius: 20px 0 0 20px;
+            border: none;
+            padding: 7px 14px;
+            font-size: 13px;
+            width: 160px;
+        }
+        .nav-search button {
+            border-radius: 0 20px 20px 0;
+            border: none;
+            background: var(--gold);
+            color: var(--navy);
+            padding: 7px 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* ================= Cards (full image visible, no cropping) ================= */
+        .media-box {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: linear-gradient(135deg, #eef1f5, #dfe4ea);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border-radius: 10px 10px 0 0;
+        }
+        .media-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .news-card {
+            background: var(--card-bg);
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 14px rgba(0,0,0,.08);
+            transition: transform .25s ease, box-shadow .25s ease;
+            height: 100%;
+        }
+        .news-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 26px rgba(0,0,0,.15);
+        }
+        .news-card .card-body { padding: 16px; }
+
+        /* ================= Footer ================= */
+        .footer1 {
+            background: var(--navy);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            padding: 48px 5% 22px;
+        }
+        .footer1 > div { color: #d8d8d8; flex: 1 1 200px; min-width: 180px; }
+        .footer1 h4, .footer1 h3, .footer1 h5 { color: var(--gold); margin-bottom: 14px; }
+        .footer1 ul { list-style: none; padding-left: 0; }
+        .footer1 a { color: #bbb; text-decoration: none; transition: color .2s; }
+        .footer1 a:hover { color: var(--gold); }
+        .footer1 li { margin-bottom: 6px; }
+        #f1 { text-align: center; }
+
+        .footer2 {
+            background: var(--navy-light);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,.08);
+            color: #aaa;
+            font-size: 13.5px;
+        }
+        .footer2 a { color: var(--gold); text-decoration: none; }
+
+        /* ================= Responsive ================= */
+        @media (max-width: 991px) {
+            .nav-toggle { display: block; }
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: var(--navy);
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height .35s ease;
+            }
+            .nav-links.open { max-height: 500px; }
+            .nav-links li a { padding: 14px 20px; border-top: 1px solid rgba(255,255,255,.06); }
+            .nav-search {
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: var(--navy);
+                padding: 0 20px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height .35s ease;
+            }
+            .nav-search.open { max-height: 80px; padding: 12px 20px; }
+            .nav-search input { flex: 1; width: auto; }
+        }
+
+        @media (max-width: 767px) {
+            .brand-row { text-align: center; }
+            .footer1 { text-align: center; padding: 34px 6% 14px; }
+            .footer1 > div { flex: 1 1 100%; }
+            .footer2 { flex-direction: column; }
+            .media-box { aspect-ratio: 1 / 1; }
+        }
+
+        @media (max-width: 480px) {
+            .top-bar { font-size: 11.5px; }
+            .top-bar > div { text-align: center; }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container-fluid p-0">
+
+    <!-- Top info bar -->
+    <div class="row top-bar text-center py-1 mx-0">
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <i class="fa-solid fa-phone"></i>+91 8429277642
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <i class="fa-solid fa-envelope"></i>newssphere@gmail.com
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            FlashPoint News
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <a class="jobs-link" href="/user/jobs/">
+                <i class="fa-solid fa-gamepad"></i> JOBS
+            </a>
+        </div>
+    </div>
+
+    <!-- Brand row -->
+    <div class="row brand-row align-items-center mx-0">
+        <div class="col-md-4 col-12 text-center text-md-start">
+            <h3>News<span class="accent">Sphere <i class="fa-solid fa-earth-americas"></i></span></h3>
+        </div>
+        <div class="col-md-5 col-12 d-flex justify-content-center gap-2 my-2 my-md-0">
+            <a href="http://www.facebook.com/" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="http://www.youtube.com/" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+            <a href="http://twitter.com/Twitter" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+            <a href="http://www.instagram.com/" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+            <a href="http://web.whatsapp.com" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="http://www.linkedin.com" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+        <div class="col-md-3 col-12 text-center text-md-end">
+            <a href="#" class="cart-btn">
+                <i class="fa-solid fa-cart-plus"></i> Cart <span class="badge">1</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Navbar (custom JS toggle, no bootstrap.bundle.js dependency) -->
+    <nav class="site-nav">
+        <div class="nav-inner">
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/user/index/"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="/user/about/"><i class="fa-regular fa-address-card"></i> AboutUs</a></li>
+                <li><a href="/user/news/"><i class="fa-solid fa-newspaper"></i> News</a></li>
+                <li><a href="/user/videos/"><i class="fa-solid fa-video"></i> Videos</a></li>
+                <li><a href="/user/jobs/"><i class="fa-solid fa-user-doctor"></i> Jobs</a></li>
+                <li><a href="/user/contact/"><i class="fa-solid fa-phone-flip"></i> ContactUs</a></li>
+                <li><a href="/admin/"><i class="fa-solid fa-right-to-bracket"></i> Login</a></li>
+            </ul>
+            <form class="nav-search" id="navSearch" role="search" method="get" action="/user/search/">
+                <input type="search" name="q" placeholder="Search news...">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page content -->
+    <div class="row mx-0">
+        <div class="col-sm-12 py-4" style="min-height:400px;">
+            {% block childpage %}
+            {% endblock %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="row mx-0">
+        <div class="footer1">
+            <div id="f1">
+                <h4><i class="fa-solid fa-book"></i></h4>
+                <b><u>ACTIVE NEWSPAPER CMS</u></b>
+                <p><u>PREMIUM</u> <u>ADVERTISEMENT</u>, <u>NEWSPAPER</u>, <u>MAGAZINE</u></p>
+            </div>
+            <div id="f2">
+                <h3>CATEGORIES</h3>
+                <ul>
+                    <li><i class="fa-sharp fa-solid fa-star"></i> Lifestyle</li>
+                    <li><i class="fa-sharp fa-solid fa-star"></i> Business</li>
+                    <li><i class="fa-sharp fa-solid fa-star"></i> Science & Technology</li>
+                    <li><i class="fa-sharp fa-solid fa-star"></i> Football</li>
+                </ul>
+            </div>
+            <div id="f3">
+                <h5>USEFUL LINKS</h5>
+                <ul>
+                    <li><a href="/user/index/"><i class="fa-solid fa-arrow-right"></i> Home</a></li>
+                    <li><a href="#"><i class="fa-solid fa-arrow-right"></i> All News</a></li>
+                    <li><a href="/user/contact/"><i class="fa-solid fa-arrow-right"></i> Contact</a></li>
+                    <li><a href="#"><i class="fa-solid fa-arrow-right"></i> FAQ</a></li>
+                    <li><a href="#"><i class="fa-solid fa-arrow-right"></i> Rss</a></li>
+                </ul>
+            </div>
+            <div id="f4">
+                <h5>ABOUT US</h5>
+                <p>Active Newspaper CMS has been developed with a Python framework.</p>
+            </div>
+            <div id="f5">
+                <h5>CONTACT US</h5>
+                <p><i class="fa-solid fa-house-chimney"></i> <b>Address:</b> Sant Kabir Nagar, UP, INDIA</p>
+                <p><i class="fa-sharp fa-solid fa-phone"></i> <b>Phone:</b> +91 7383232973</p>
+                <p><i class="fa-sharp fa-solid fa-globe"></i> <b>Website:</b> selfzone.com</p>
+                <p><i class="fa-sharp fa-solid fa-envelope"></i> <b>Email:</b> selfzone123@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="footer2">
+            <div>
+                <a href="http://www.techpile.in/">
+                    <i class="fa-solid fa-house-chimney"></i> www.techpile.in
+                </a>
+            </div>
+            <div>&copy; 2023 All rights reserved | Active Newspaper CMS | Terms & Conditions | Privacy Policy</div>
+            <div class="d-flex gap-2 justify-content-center">
+                <a href="http://www.facebook.com/" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="http://twitter.com/Twitter" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                <a href="http://www.instagram.com/" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                <a href="http://www.youtube.com/" class="social-icon"><i class="fa-brands fa-youtube"></i></a>
+                <a href="http://web.whatsapp.com/" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="http://www.linkedin.com/" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Custom, dependency-free navbar toggle -->
+<script>
+    document.getElementById('navToggle').addEventListener('click', function () {
+        document.getElementById('navLinks').classList.toggle('open');
+        document.getElementById('navSearch').classList.toggle('open');
+    });
+</script>
+<script src="{% static 'js/bootstrap.bundle.js'%}"></script>
+</body>
+</html>

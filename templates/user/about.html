@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block childpage %}
+<style>
+    #a{padding-right: 40px;
+    padding-left: 40px;}
+</style>
+<div class="text-center fs-2">
+    About Our <b class="txt-mycolor">Company</b>
+    <p>There are multiple reasons to choose us for multiple purpose related to your need.</p>
+</div>
+<div id="a" class="py-5"></div>
+
+    <div class="row align-items-start">
+  
+  <!-- Image Column -->
+  <div class="col-md-4">
+    <img src="{% static 'images/anand1.jpg' %}" 
+         class="img-fluid" 
+         style="height:250px;" 
+         alt="Company Image">
+  </div>
+<!-- Text Column -->
+<div class="col-md-8">
+
+    <p>
+        <b>About NewsSphere</b>
+    </p>
+
+    <p>
+        NewsSphere is a modern digital news platform dedicated to delivering accurate, timely, and engaging news from around the world. Our goal is to keep readers informed with trustworthy information and provide a seamless news-reading experience through a simple and responsive interface.
+    </p>
+
+    <p>
+        At NewsSphere, we cover a wide range of categories including Politics, Business, Technology, Sports, Entertainment, Health, Education, and World News. Every article is carefully organized to help readers quickly access the information they are looking for.
+    </p>
+
+    <p>
+        We believe that quality journalism empowers people to make informed decisions. NewsSphere is committed to providing reliable news, insightful stories, and the latest updates while maintaining speed, accuracy, and credibility.
+    </p>
+
+</div>
+
+</div>
+
+
+{% endblock %}
