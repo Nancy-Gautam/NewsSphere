@@ -133,6 +133,8 @@ STORAGES = {
     },
 }
 
+WHITENOISE_MANIFEST_STRICT = False
+
 MEDIA_ROOT = BASE_DIR
 MEDIA_URL = '/media/'
 
